@@ -1,0 +1,16 @@
+# DATA.yml for the test set
+#   by Camila Alvarez
+# 
+# This file describes how a dataset acts within the system. For now, only raw
+# files are supported, making this file very simple.
+#
+
+# Set some metadata for this dataset
+name: sentiment_test
+owners:
+- Camila Alvarez
+description: Testing set for sentiment analysis pipeline
+
+# This is the real magic: we tell Brane we mean this file
+access: !file
+  path: ./data

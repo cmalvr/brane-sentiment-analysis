@@ -1,0 +1,36 @@
+// PIPELINE
+//   by Camila Alvarez, Marc and Marie
+//
+// Based on work by Andrea Marino and Jingye Wang.
+//
+
+import compute;
+#[on("localhost")]
+{
+    /// CLEANING///
+    let train_clean := clean(new Data{ name := "sentiment_train" });
+    let test_clean  := clean(new Data{ name := "sentiment_test" });
+
+    ///TRAINING///
+    println("Tokenizing dataset...");
+    let train := tokenize(train_clean);
+    let test  := tokenize(test_clean);
+
+
+    println("Removing stopwords from dataset...");
+    train := remove_stopwords(train);
+    test  := remove_stopwords(test);
+
+    println("Training model...");
+    let model := train_model(train, vectors);
+    commit_result("sentiment_model", model);
+
+
+    //////// TESTING ////////
+    println("Generating sentiment predictions...");
+    let submission := create_submission(test, model);
+    commit_result("sentiment_predictions", submission);
+
+    // Return the final results
+    return commit_result("final_submission", submission);
+}
