@@ -22,7 +22,7 @@ import compute;
     test  := remove_stopwords(test);
 
     println("Training model...");
-    let model := train_model(train, vectors);
+    let model := train_model(train);
     commit_result("sentiment_model", model);
 
 

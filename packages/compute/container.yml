@@ -67,7 +67,7 @@ actions:
       - type: IntermediateResult
         name: filepath
 
-  'train_model':
+ 'train_model':
     command:
       capture: marked
       args:
