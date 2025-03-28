@@ -8,6 +8,8 @@ matplotlib = "*"
 pandas = "*"
 pyyaml = "*"
 packages = "*"
+scikit-learn = "*"
+seaborn = "*"
 
 [dev-packages]
 

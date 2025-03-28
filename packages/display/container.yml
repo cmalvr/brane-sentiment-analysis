@@ -31,14 +31,28 @@ entrypoint:
   exec: run.py
 
 actions:
-  generate_prediction_plot:
+  generate_cs_plot:
     command:
       capture: marked
       args:
-        - generate_prediction_plot
+        - generate_cs_plot
     input:
       - type: IntermediateResult
         name: filepath_submission
+    output:
+      - type: IntermediateResult
+        name: filepath_plot
+
+  generate_heatmap:
+    command:
+      capture: marked
+      args:
+        - generate_heatmap
+    input:
+      - type: IntermediateResult
+        name: filepath_submission
+      - type: IntermediateResult
+        name: filepath_dataset
     output:
       - type: IntermediateResult
         name: filepath_plot

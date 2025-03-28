@@ -8,7 +8,7 @@ import yaml
 
 import json
 
-from display import generate_prediction_plot
+from display import generate_cs_plot, generate_heatmap
 
 
 def print_output(data: dict):
@@ -31,7 +31,12 @@ def main():
 
     if command == "generate_prediction_plot":
         filepath_sub_dataset = f"{json.loads(os.environ['FILEPATH_SUBMISSION'])}/submission.csv"
-        output = generate_prediction_plot(filepath_sub_dataset)
+        output = generate_cs_plot(filepath_sub_dataset)
+        return
+    if command == "generate_heatmap":
+        filepath_sub_dataset = f"{json.loads(os.environ['FILEPATH_SUBMISSION'])}/submission.csv"
+        filepath_test_dataset = f"{json.loads(os.environ['FILEPATH_DATASET'])}/dataset.csv"
+        output = generate_heatmap(filepath_test_dataset, filepath_sub_dataset)
         return
     
 if __name__ == '__main__':

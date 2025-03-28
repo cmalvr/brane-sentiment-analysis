@@ -1,7 +1,9 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
 
-def generate_prediction_plot(filepath_sub_dataset: str) -> str:
+def generate_cs_plot(filepath_sub_dataset: str) -> str:
     """
     Generate a plot that the top N counts of the dataset
     and exports an image in the DFS.
@@ -36,3 +38,51 @@ def generate_prediction_plot(filepath_sub_dataset: str) -> str:
     plt.savefig(filename)
 
     return "confidence_scores.png"
+
+
+def generate_heatmap(filepath_test_dataset: str, filepath_sub_dataset: str) -> str:
+    """
+    Generate a confusion matrix heatmap based on true and predicted sentiment labels.
+    
+    Parameters
+    ----------
+    filepath_test_dataset : str
+        The CSV file path for the test dataset that contains the true labels in the 'target' column.
+    
+    filepath_sub_dataset : str
+        The CSV file path for the prediction dataset that contains the predicted labels in the 'target' column.
+    
+    Returns
+    -------
+    str
+        The file path for the saved confusion matrix plot image in the DFS.
+    """
+    # Load the datasets
+    df_true = pd.read_csv(filepath_test_dataset)
+    df_pred = pd.read_csv(filepath_sub_dataset)
+    
+    # Extract true and predicted labels from the 'target' column
+    y_true = df_true['target'].values
+    y_pred = df_pred['target'].values
+    
+    # Compute the confusion matrix
+    cm = confusion_matrix(y_true, y_pred)
+    
+    # Determine the label order (e.g., [0, 2, 4] for negative, neutral, positive)
+    labels = sorted(set(y_true) | set(y_pred))
+    
+    # Create the heatmap plot
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
+                xticklabels=labels, yticklabels=labels)
+    plt.xlabel("Predicted Label")
+    plt.ylabel("True Label")
+    plt.title("Confusion Matrix")
+    plt.tight_layout()
+    
+    # Save the plot to a PNG file in the DFS
+    filename = "/result/confusion_matrix.png"
+    plt.savefig(filename)
+    plt.close()
+    
+    return filename

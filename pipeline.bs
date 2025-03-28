@@ -36,6 +36,9 @@ import display;
    
    //////// PLOTTING /////////
     println("Plotting predictions...");
-    let plot := generate_prediction_plot(submission);
-    return commit_result("plot", plot);
+    let plot := generate_cs_plot(submission);
+    commit_result("plot", plot);
+
+    let heatmap := generate_heatmap(submission, test);
+    commit_result("heatmap", heatmap);
 }
