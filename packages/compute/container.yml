@@ -2,7 +2,7 @@ name: compute
 version: 1.0.0
 kind: ecu
 
-description: ""
+description: "Compute package to perform data processing and model training"
 
 contributors:
   - Camila Alvarez <camila.alvarez14@hotmail.com>

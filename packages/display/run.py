@@ -29,7 +29,7 @@ def print_output(data: dict):
 def main():
     command = sys.argv[1]
 
-    if command == "generate_prediction_plot":
+    if command == "generate_cs_plot":
         filepath_sub_dataset = f"{json.loads(os.environ['FILEPATH_SUBMISSION'])}/submission.csv"
         output = generate_cs_plot(filepath_sub_dataset)
         return

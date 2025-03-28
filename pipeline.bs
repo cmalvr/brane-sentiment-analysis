@@ -1,7 +1,6 @@
 // PIPELINE
-//   by Camila Alvarez, Marc and Marie
+//   by Camila Alvarez, Marc Xu Zhou and Maria Malysheva
 //
-// Based on work by Andrea Marino and Jingye Wang.
 //
 
 import compute;

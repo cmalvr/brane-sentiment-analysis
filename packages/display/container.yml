@@ -2,7 +2,7 @@ name: display
 version: 1.0.0
 kind: ecu # Executable Code Unit
 
-description: "Display code for a png"
+description: "Plot generation code"
 
 contributors:
   - Camila Alvarez <camila.alvarez14@hotmail.com>
