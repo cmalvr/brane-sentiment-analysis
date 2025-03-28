@@ -134,9 +134,14 @@ def create_submission(dataset_path: str, model_path: str) -> str:
     submission['target'] = predictions
     
     # Add confidence scores
-    submission['negative_conf'] = probabilities[:, 0]  # confidence for 0 (negative)
-    submission['neutral_conf'] = probabilities[:, 1]   # confidence for 2 (neutral)
-    submission['positive_conf'] = probabilities[:, 2]  # confidence for 4 (positive)
+    if probabilities.shape[1] == 2:  # Binary classification
+        submission['negative_conf'] = probabilities[:, 0]  # confidence for negative
+        submission['neutral_conf'] = 0.0  # no neutral class
+        submission['positive_conf'] = probabilities[:, 1]  # confidence for positive
+    else:  # Multiclass classification
+        submission['negative_conf'] = probabilities[:, 0]  # confidence for 0 (negative)
+        submission['neutral_conf'] = probabilities[:, 1]   # confidence for 2 (neutral)
+        submission['positive_conf'] = probabilities[:, 2]  # confidence for 4 (positive)
 
     # Save submission file
     filename = f"/result/submission.csv"

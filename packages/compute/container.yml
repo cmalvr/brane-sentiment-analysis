@@ -1,6 +1,11 @@
-name: sentiment-compute
+name: compute
 version: 1.0.0
 kind: ecu
+
+description: ""
+
+contributors:
+  - Camila Alvarez <camila.alvarez14@hotmail.com>
 
 dependencies:
   - python3
@@ -8,7 +13,8 @@ dependencies:
 
 install:
   - apt update && apt upgrade -y
-  - apt install pipenv -y
+  - apt install python3-pip -y
+  - pip3 install --upgrade pipenv
 
 files:
   - Pipfile

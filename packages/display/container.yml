@@ -1,0 +1,44 @@
+name: display
+version: 1.0.0
+kind: ecu # Executable Code Unit
+
+description: "Display code for a png"
+
+contributors:
+  - Camila Alvarez <camila.alvarez14@hotmail.com>
+
+dependencies:
+  - python3
+  - python3-yaml
+
+install:
+  - apt update && apt upgrade -y
+  - apt install python3-pip -y
+  - pip3 install --upgrade pipenv
+
+files:
+  - Pipfile
+  - Pipfile.lock
+  - run.py
+  - __init__.py
+  - display.py
+
+postinstall:
+  - pipenv install --system --deploy
+
+entrypoint:
+  kind: task
+  exec: run.py
+
+actions:
+  generate_prediction_plot:
+    command:
+      capture: marked
+      args:
+        - generate_prediction_plot
+    input:
+      - type: IntermediateResult
+        name: filepath_submission
+    output:
+      - type: IntermediateResult
+        name: filepath_plot

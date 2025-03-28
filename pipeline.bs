@@ -5,9 +5,12 @@
 //
 
 import compute;
+import display;
+
 #[on("localhost")]
 {
     /// CLEANING///
+    println("Cleaning dataset...");
     let train_clean := clean(new Data{ name := "sentiment_train" });
     let test_clean  := clean(new Data{ name := "sentiment_test" });
 
@@ -30,7 +33,9 @@ import compute;
     println("Generating sentiment predictions...");
     let submission := create_submission(test, model);
     commit_result("sentiment_predictions", submission);
-
-    // Return the final results
-    return commit_result("final_submission", submission);
+   
+   //////// PLOTTING /////////
+    println("Plotting predictions...");
+    let plot := generate_prediction_plot(submission);
+    return commit_result("plot", plot);
 }
