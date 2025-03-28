@@ -1,6 +1,6 @@
 # brane-sentiment-analysis
 
-To run this repository you need the updated brane files from our local branch.
+To run this repository you need the updated brane files from our local branch. The following commands need to be run from the brane-sentiment-analysis main directory.
 
 ## Building data
 ```
